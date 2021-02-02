@@ -1,6 +1,6 @@
 ---
 title: "Lab 3 Report"
-author: "___"
+author: "Marin Eeg"
 date: "`r format(Sys.Date())`"
 output: github_document
 ---
@@ -11,19 +11,30 @@ Instructions for this lab report can be found on [Your assignment section of Lab
 
 > A. Insert an R code chunk and create a graph depicting the frequency distribution of the 35 mass measurements. It should have legible text and appropriate axis labels.
 
-\_\_\_
+library(tidyverse)
+
+# firefly spermantohore masses ------------------------------------------------------------
+
+
+firefly_mass <- read_csv("https://whitlockschluter.zoology.ubc.ca/wp-content/data/chapter02/chap02q19FireflySpermatophoreMass.csv")
+ggplot(data = firefly_mass) +
+  geom_histogram(mapping = aes(x = spermatophoreMass), bins = 10,
+                 boundary = 0, close = "left",
+                 fill = "#C5351B", color = "black") +
+  labs(x = "Spermatophore Mass", y = "Frequency (number of species)")
+
 
 > B. What type of graph did you choose in part (A)? Why?
 
-\_\_\_
+Histogram, I thought it would display the data the best.
 
 > C. Describe the shape of the frequency distribution. What are its main features?
 
-\_\_\_
+I believe this would be positively skewed because many of the bars are on the left side. 
 
 > D. What term would be used to describe the largest measurement in the frequency distribution? You can refer to the lecture slides, your notes, or the textbook.
 
-\_\_\_
+An outlier.
 
 ## Bird orders
 
@@ -38,25 +49,44 @@ birds <- ebird_taxonomy %>%           # start with the ebird_taxonomy data
 
 > E. How many bird species are in the new birds dataset? How did you find out?
 
-\_\_\_
+10,721, that is how many rows there were in the table.
 
 > H. How many orders are there? You can get this right by counting on the graph, but you will only get full points if you use some code to figure it out.
 
-\_\_\_
+41 but I do not know how to get it with code. 
 
 > F. Insert an R code chunk and create a graph depicting the distribution of orders in the birds dataset. Sort the orders with the most frequent on the left. It should have legible text and appropriate axis labels.
 
-\_\_\_
+library(tidyverse)
+# birds -------------------------------------------------------------------
+
+library(auk)                          # load the auk package
+birds <- ebird_taxonomy %>%           # start with the ebird_taxonomy data
+  as_tibble() %>%                     # tibbles print better in the console
+  filter(category == "species")       # remove non-species taxa
+
+ggplot(data = birds) +
+  geom_bar(mapping = aes(x = fct_infreq(order)), fill = "#C5351B", 
+           width = .8) +
+  labs(x = "Order", y = "Frequency (number of birds)") +
+  scale_y_continuous(limits = c(0, 6500), expand = expansion(mult = 0)) +
+  theme_classic(base_size = 12) +
+  theme(
+    axis.title = element_text(face = "bold"),
+    axis.text = element_text(color = "black", size = rel(1)),
+    axis.text.x = element_text(angle = 45, hjust = 1),
+    axis.ticks.x = element_blank()
+  )
 
 > G. What kind of graph did you create? Why?
 
-\_\_\_
+I created a bar chart because it would be the best to read. 
 
 ## Links to peer review
 
-I reviewed \_\_\_'s lab report at this URL: \_\_\_
+I reviewed Emily Miller's lab report at this URL: \_\_\_
 
-\_\_\_ reviewed my lab report at this URL: \_\_\_
+Emily Miller reviewed my lab report at this URL: \_\_\_
 
 ## Session Info
 
