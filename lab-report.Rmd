@@ -84,9 +84,9 @@ I created a bar chart because it would be the best to read.
 
 ## Links to peer review
 
-I reviewed Emily Miller's lab report at this URL: \_\_\_
+I reviewed Emily Miller's lab report at this URL: https://github.com/BIOL275-MSUM/lab-3-intro-to-ggplot-emilymiller24.git
 
-Emily Miller reviewed my lab report at this URL: \_\_\_
+Emily Miller reviewed my lab report at this URL: https://github.com/BIOL275-MSUM/lab-3-intro-to-ggplot-marineeg.git
 
 ## Session Info
 
